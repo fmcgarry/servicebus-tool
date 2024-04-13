@@ -12,12 +12,21 @@ public class ServiceBusService(IServiceBusClient _serviceBusClient) : IServiceBu
 
     public async Task<IEnumerable<Subscription>> GetAllSubscriptionsAsync(string namespaceName, string topicName)
     {
-        return await _serviceBusClient.GetSubscriptionsAsync(namespaceName, topicName);
+        ArgumentException.ThrowIfNullOrWhiteSpace(namespaceName);
+        ArgumentException.ThrowIfNullOrWhiteSpace(topicName);
+
+        var subscriptions = await _serviceBusClient.GetSubscriptionsAsync(namespaceName, topicName);
+
+        return subscriptions;
     }
 
     public async Task<IEnumerable<Topic>> GetAllTopicsAsync(string namespaceName)
     {
-        return await _serviceBusClient.GetTopicsAsync(namespaceName);
+        ArgumentException.ThrowIfNullOrWhiteSpace(namespaceName);
+
+        var topics = await _serviceBusClient.GetTopicsAsync(namespaceName);
+
+        return topics;
     }
 
     public void GetDlqMessagesFrom(int sequenceId, string subscriptionName)
