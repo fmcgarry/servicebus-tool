@@ -29,6 +29,43 @@ public class ServiceBusToolClient(ILogger<ServiceBusToolClient> logger, IAzureCl
         return messages;
     }
 
+    public string GetStringFromMessageBody(BinaryData messageBody)
+    {
+        var content = Encoding.UTF8.GetString(messageBody);
+
+        // If there's a BOM the Parse will fail.
+        string bom = Encoding.UTF8.GetString(Encoding.UTF8.GetPreamble());
+        content = content.Trim(bom.ToCharArray());
+
+        return content;
+    }
+
+    public async Task<IEnumerable<Subscription>> GetSubscriptionsAsync(string @namespace, string topic)
+    {
+        logger.LogInformation("Getting subscriptions for {namespace}/{topic}", @namespace, topic);
+
+        var subscriptions = new List<Subscription>();
+
+        var adminClient = adminClientFactory.CreateClient(@namespace);
+        var rawSubscriptions = adminClient.GetSubscriptionsRuntimePropertiesAsync(topic);
+
+        await foreach (var rawSuscription in rawSubscriptions)
+        {
+            var subscription = new Subscription()
+            {
+                Name = rawSuscription.SubscriptionName,
+                NumActiveMessages = Convert.ToInt32(rawSuscription.ActiveMessageCount),
+                NumDlqMessages = Convert.ToInt32(rawSuscription.DeadLetterMessageCount)
+            };
+
+            subscriptions.Add(subscription);
+        }
+
+        logger.LogDebug("Found {numSubscriptions} subscriptions in {namespace}/{topic}", subscriptions.Count, @namespace, topic);
+
+        return subscriptions;
+    }
+
     public async Task<IEnumerable<Topic>> GetTopicsAsync(string @namespace)
     {
         logger.LogInformation("Getting topics for {namespace} ", @namespace);
@@ -51,43 +88,5 @@ public class ServiceBusToolClient(ILogger<ServiceBusToolClient> logger, IAzureCl
         logger.LogDebug("Found {numTopics} topics in {namespace}", topics.Count, @namespace);
 
         return topics;
-    }
-
-    public async Task<IEnumerable<Subscription>> GetSubscriptionsAsync(string @namespace, string topic)
-    {
-        logger.LogInformation("Getting subscriptions for {namespace}/{topic}", @namespace, topic);
-
-        var subscriptions = new List<Subscription>();
-
-        var adminClient = adminClientFactory.CreateClient(@namespace);
-        var rawSubscriptions = adminClient.GetSubscriptionsRuntimePropertiesAsync(topic);
-
-        await foreach (var rawSuscription in rawSubscriptions)
-        {
-
-            var subscription = new Subscription()
-            {
-                Name = rawSuscription.SubscriptionName,
-                NumActiveMessages = Convert.ToInt32(rawSuscription.ActiveMessageCount),
-                NumDlqMessages = Convert.ToInt32(rawSuscription.DeadLetterMessageCount)
-            };
-
-            subscriptions.Add(subscription);
-        }
-
-        logger.LogDebug("Found {numSubscriptions} subscriptions in {namespace}/{topic}", subscriptions.Count, @namespace, topic);
-
-        return subscriptions;
-    }
-
-    public string GetStringFromMessageBody(BinaryData messageBody)
-    {
-        var content = Encoding.UTF8.GetString(messageBody);
-
-        // If there's a BOM the Parse will fail.
-        string bom = Encoding.UTF8.GetString(Encoding.UTF8.GetPreamble());
-        content = content.Trim(bom.ToCharArray());
-
-        return content;
     }
 }
