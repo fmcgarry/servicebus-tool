@@ -2,9 +2,9 @@
 using Microsoft.Extensions.Azure;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using ServiceBusTool.Core.ServiceBus.Interfaces;
+using ServiceBusTool.Core.Interfaces;
 
-namespace ServiceBusTool.Infrastructure.ServiceBus;
+namespace ServiceBusTool.Infrastructure;
 
 public static class ServiceCollectionExtensions
 {

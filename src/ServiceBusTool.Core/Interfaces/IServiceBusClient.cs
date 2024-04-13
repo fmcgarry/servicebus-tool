@@ -1,6 +1,6 @@
-﻿using ServiceBusTool.Core.ServiceBus.Models;
+﻿using ServiceBusTool.Core.Models;
 
-namespace ServiceBusTool.Core.ServiceBus.Interfaces;
+namespace ServiceBusTool.Core.Interfaces;
 
 public interface IServiceBusClient
 {

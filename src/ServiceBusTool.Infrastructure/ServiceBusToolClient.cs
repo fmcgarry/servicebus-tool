@@ -2,11 +2,11 @@
 using Azure.Messaging.ServiceBus.Administration;
 using Microsoft.Extensions.Azure;
 using Microsoft.Extensions.Logging;
-using ServiceBusTool.Core.ServiceBus.Interfaces;
-using ServiceBusTool.Core.ServiceBus.Models;
+using ServiceBusTool.Core.Interfaces;
+using ServiceBusTool.Core.Models;
 using System.Text;
 
-namespace ServiceBusTool.Infrastructure.ServiceBus;
+namespace ServiceBusTool.Infrastructure;
 
 public class ServiceBusToolClient(ILogger<ServiceBusToolClient> logger, IAzureClientFactory<ServiceBusClient> clientFactory, IAzureClientFactory<ServiceBusAdministrationClient> adminClientFactory) : IServiceBusClient
 {

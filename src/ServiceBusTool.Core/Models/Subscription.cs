@@ -1,4 +1,4 @@
-﻿namespace ServiceBusTool.Core.ServiceBus.Models;
+﻿namespace ServiceBusTool.Core.Models;
 
 public class Subscription
 {

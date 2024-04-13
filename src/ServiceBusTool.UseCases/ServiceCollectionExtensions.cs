@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using ServiceBusTool.Core.ServiceBus.Interfaces;
-using ServiceBusTool.Infrastructure.ServiceBus;
+using ServiceBusTool.Core.Interfaces;
+using ServiceBusTool.Infrastructure;
 
 namespace ServiceBusTool.UseCases;
 

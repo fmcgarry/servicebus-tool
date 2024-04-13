@@ -1,5 +1,5 @@
-﻿using ServiceBusTool.Core.ServiceBus.Interfaces;
-using ServiceBusTool.Core.ServiceBus.Models;
+﻿using ServiceBusTool.Core.Interfaces;
+using ServiceBusTool.Core.Models;
 
 namespace ServiceBusTool.UseCases;
 

@@ -1,4 +1,4 @@
-﻿namespace ServiceBusTool.Infrastructure.ServiceBus;
+﻿namespace ServiceBusTool.Infrastructure;
 
 public class ServiceBusClientOptions
 {
