@@ -53,6 +53,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\ServiceBusTool.Infrastructure\ServiceBusTool.Infrastructure.csproj" />
       <ProjectReference Include="..\ServiceBusTool.UseCases\ServiceBusTool.UseCases.csproj" />
     </ItemGroup>
 

@@ -3,6 +3,7 @@ using Microsoft.Extensions.Azure;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using ServiceBusTool.Core.Interfaces;
+using ServiceBusTool.UseCases;
 
 namespace ServiceBusTool.Infrastructure;
 
@@ -27,6 +28,7 @@ public static class ServiceCollectionExtensions
         }
 
         services.AddScoped<IServiceBusClient, ServiceBusToolClient>();
+        services.AddScoped<IServiceBusService, ServiceBusService>();
 
         return services;
     }

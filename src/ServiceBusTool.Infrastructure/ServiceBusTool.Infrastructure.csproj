@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ServiceBusTool.Core\ServiceBusTool.Core.csproj" />
+    <ProjectReference Include="..\ServiceBusTool.UseCases\ServiceBusTool.UseCases.csproj" />
   </ItemGroup>
 
 </Project>

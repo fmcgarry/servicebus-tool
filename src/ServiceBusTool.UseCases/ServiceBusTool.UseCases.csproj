@@ -9,7 +9,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ServiceBusTool.Core\ServiceBusTool.Core.csproj" />
-    <ProjectReference Include="..\ServiceBusTool.Infrastructure\ServiceBusTool.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
