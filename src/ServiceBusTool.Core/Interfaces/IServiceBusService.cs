@@ -1,15 +1,14 @@
 ﻿using ServiceBusTool.Core.Models;
 
-namespace ServiceBusTool.Core.Interfaces
+namespace ServiceBusTool.Core.Interfaces;
+
+public interface IServiceBusService
 {
-    public interface IServiceBusService
-    {
-        void GetAllDlqMessages(string subscriptionName);
+    void GetAllDlqMessages(string subscriptionName);
 
-        Task<IEnumerable<Subscription>> GetAllSubscriptionsAsync(string namespaceName, string topicName);
+    Task<IEnumerable<Subscription>> GetAllSubscriptionsAsync(string namespaceName, string topicName);
 
-        Task<IEnumerable<Topic>> GetAllTopicsAsync(string namespaceName);
+    Task<IEnumerable<Topic>> GetAllTopicsAsync(string namespaceName);
 
-        void GetDlqMessagesFrom(int sequenceId, string subscriptionName);
-    }
+    void GetDlqMessagesFrom(int sequenceId, string subscriptionName);
 }

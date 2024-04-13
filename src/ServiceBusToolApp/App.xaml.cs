@@ -1,12 +1,11 @@
-﻿namespace ServiceBusToolApp
-{
-    public partial class App : Application
-    {
-        public App()
-        {
-            InitializeComponent();
+﻿namespace ServiceBusToolApp;
 
-            MainPage = new MainPage();
-        }
+public partial class App : Application
+{
+    public App()
+    {
+        InitializeComponent();
+
+        MainPage = new MainPage();
     }
 }
