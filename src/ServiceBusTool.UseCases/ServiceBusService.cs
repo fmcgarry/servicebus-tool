@@ -5,23 +5,23 @@ namespace ServiceBusTool.UseCases;
 
 public class ServiceBusService(IServiceBusClient _serviceBusClient) : IServiceBusService
 {
-    public async Task<IEnumerable<Subscription>> GetAllSubscriptionsAsync(string @namespace, string topic)
+    public void GetAllDlqMessages(string subscriptionName)
     {
-        return await _serviceBusClient.GetSubscriptionsAsync(@namespace, topic);
+        throw new NotImplementedException();
     }
 
-    public async Task<IEnumerable<Topic>> GetAllTopicsAsync(string @namespace)
+    public async Task<IEnumerable<Subscription>> GetAllSubscriptionsAsync(string namespaceName, string topicName)
     {
-        return await _serviceBusClient.GetTopicsAsync(@namespace);
+        return await _serviceBusClient.GetSubscriptionsAsync(namespaceName, topicName);
     }
 
-    public void GetAllDlqMessages(string subscription)
+    public async Task<IEnumerable<Topic>> GetAllTopicsAsync(string namespaceName)
     {
-
+        return await _serviceBusClient.GetTopicsAsync(namespaceName);
     }
 
-    public void GetDlqMessagesFrom(int sequenceId, string subscription)
+    public void GetDlqMessagesFrom(int sequenceId, string subscriptionName)
     {
-
+        throw new NotImplementedException();
     }
 }

@@ -4,9 +4,12 @@ namespace ServiceBusTool.Core.Interfaces
 {
     public interface IServiceBusService
     {
-        void GetAllDlqMessages(string subscription);
-        Task<IEnumerable<Subscription>> GetAllSubscriptionsAsync(string @namespace, string topic);
-        Task<IEnumerable<Topic>> GetAllTopicsAsync(string @namespace);
-        void GetDlqMessagesFrom(int sequenceId, string subscription);
+        void GetAllDlqMessages(string subscriptionName);
+
+        Task<IEnumerable<Subscription>> GetAllSubscriptionsAsync(string namespaceName, string topicName);
+
+        Task<IEnumerable<Topic>> GetAllTopicsAsync(string namespaceName);
+
+        void GetDlqMessagesFrom(int sequenceId, string subscriptionName);
     }
 }
