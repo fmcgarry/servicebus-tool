@@ -1,0 +1,20 @@
+﻿@page "/explore"
+
+<PageTitle>Explore</PageTitle>
+
+<MudContainer Class="mt-6" MaxWidth="MaxWidth.False">
+    <MudPaper>
+        <div class="row">
+            <div class="col-2">
+                <MudTreeView ServerData="LoadServerData" Items="TreeItems" Dense="true" ExpandOnClick="true">
+                    <ItemTemplate>
+                        <MudTreeViewItem Value="@context" Icon="@context.Icon" LoadingIconColor="Color.Info" CanExpand="@context.CanExpand" Text="@context.Title" EndText="@context.Number?.ToString()" EndTextTypo="@Typo.caption" />
+                    </ItemTemplate>
+                </MudTreeView>
+            </div>
+            <div class="col">
+
+            </div>
+        </div>
+    </MudPaper>
+</MudContainer>
